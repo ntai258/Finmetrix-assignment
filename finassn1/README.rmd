@@ -1,0 +1,248 @@
+---
+title: "README"
+author: "Ntai Lesenya"
+date: "October 2020"
+output: RMD
+
+PURPOSE:
+To Track progress and roadmap of the coding and functions used in the analysis of Us dollar volatility Vs EM and DM equity market performance. 
+
+## Loading Xls data and converting to rds
+Finassn1.loc.root <- file.path("C:/Users/User/Documents/finassn1")
+Finassn1.loc.subdirs <- c("data", "code", "bin")
+Finassn <- build_path(glue::glue("{Finassn1.loc.root}/{Finassn1.loc.subdirs}"))
+library(rmsfuns)
+load_pkg("readr")
+data<- read_csv("C:/Users/User/Documents/Finassn1/data/msci_cleaned.csv")
+DataLoc <- Finassn[grepl("data", Finassn)]
+write_rds(data, path = file.path(DataLoc, "msci_cleaned.rds"))
+rm(data)
+data <- read_rds(file.path(DataLoc, "msci_clean.rds"))
+
+
+
+## Creating Rmardown and associated packages
+if (!require("devtools")) install.packages("devtools")
+library(devtools)
+devtools::install_github("Nicktz/Texevier")
+library(Texevier)
+dir <- "C:/Users/User/Documents/finassn1"
+create_template(directory = dir, template_name = "Impact of Dollar Volatility on EM & DM eqiuty returns")
+install.packages(c('tinytex', 'rmarkdown'))
+tinytex::install_tinytex()
+
+
+
+
+Firstly, this function is responsible for loading some core packages needed for the project code:
+```{r load packages}
+library(rmsfuns)
+pacman::p_load("MTS", "robustbase")
+pacman::p_load("tidyverse", "devtools", "rugarch","rmgarch", "forecast", "tbl2xts", "lubridate", "PerformanceAnalytics", "Texevier", "ggthemes")
+
+  
+
+```
+
+
+Then, load the data and subset the sample (pre and post-crisis).
+
+```{r load data }
+# -------------------------------------------------------- Load data ------------------------------------------------------
+data<- read_rds("C:/Users/User/Documents/finassn1/data/msci_clean.rds")                                                                        
+
+```
+
+DATA
+This section details all the needed code used in the data description section of the paper:
+The first function below calculates the weekly returns of the msci indices used:
+```{r weekly return function}
+WeeklyReturnFunction <- function(data){
+  
+  rtn <- data %>% gather(Tickers, TRI, -Date) %>% group_by(Tickers) %>%
+  mutate(dlogret = log(TRI) - log(lag(TRI))) %>% mutate(scaledret = (dlogret -
+                                                                       mean(dlogret, na.rm = T))) %>% filter(Date > first(Date)) %>%
+  ungroup()
+Tidyrtn <- rtn
+
+
+  g <-
+ggplot(Tidyrtn) + geom_line(aes(x = Date, y = TRI, colour = Tickers,
+                                alpha = 0.5)) + ggtitle("MSCI Returns Series:  EM  & DM Returns") +
+  facet_wrap(~Tickers, scales = "free_y") + guides(alpha = FALSE) +
+  theme_bw() + scale_color_hue(l = 20) + scale_x_date(labels = scales::date_format("'%y"),
+                                                      date_breaks = "2 years") + theme(axis.text = element_text(size = 7)) # However the plot will be inserted in the Appedix in the actual paper for cleanliness
+
+}
+
+```
+#Test for Heteroskedasticity in the data using the MV contitional Heteroskedasticity test. This confirms the financial time series characteristic of non-nomarlity and use of GARCH modelling
+xts_rtn <- rtn %>% tbl_xts(., cols_to_xts = "dlogret", spread_by = "Tickers")
+MarchTest(xts_rtn)
+
+This code design a table for Ticker description (However the table will be inserted in the Appedix in the actual paper for cleanliness):
+
+library(xtable)
+des_names <- c("Brazil", "Canada", "Switzerland", "France", "United Kingdom", "India", "Japan", "South Africa", "Taiwan","Egypt", "Bloomberg US Dollar Spot Index")
+
+des_t <- cbind(colnames(xts_rtn), des_names)
+colnames(des_t) <- c("Ticker", "Description")
+
+table <- xtable(des_t, caption = "Returns description Table \\label{tab1}")
+print.xtable(table,
+             # tabular.environment = "longtable",
+             floating = TRUE,
+             table.placement = 'H',
+             # scalebox = 0.4,
+             comment = FALSE,
+             caption.placement = 'bottom'
+)
+
+Use this code to design a summary statistics for the time series data and filter out less important stats: 
+# Descriptive stats table
+
+pacman::p_load("psych")
+rtn_tbl<-rtn
+rtn_tbl$Date <- NULL
+rtn_tbl$scaledret <- NULL
+rtn_tbl$TRI <-NULL
+des_table <- psych::describeBy(rtn_tbl, rtn_tbl$Tickers, mat = TRUE)
+des_table$item <- NULL
+des_table$range <- NULL
+des_table$mad <- NULL
+des_table$n <- NULL
+des_table$Date<-NULL
+des_table$vars<-NULL
+des_table <- des_table[ -(1:11), ]
+table <- xtable(des_table, caption = "Descriptive Statistics Table \\label{tab2}")
+print.xtable(table,
+             tabular.environment = "longtable",
+             floating = TRUE,
+             table.placement = 'H',
+             scalebox = 0,
+             comment = FALSE,
+             caption.placement = 'bottom'
+)
+
+
+
+
+METHODOLOGY
+Following the test then we can settle on the DCC GARCH model. This section breaks down the derivations of the dynamic conditional correlations:
+
+
+
+
+RESULTS
+This section details all the needed code used to obatin the results analysed in the PAPER:
+## DCC-GARCH
+Apply the following code chunk to calculate the individual volatility series to be used in DCC estimation:
+    
+```{r VOL_series}
+
+#Firstly for the individual series, a standard univariate GARCH(1,1) modelled to give the H_t (used interchangeably with Sigma for plotting) process to be used in calculating the standardized residual. This are then used in  DCC calculations after.
+
+DCCPre <- dccPre(xts_rtn, include.mean = T, p = 0) #dccPre fits the univariate GARCH models to each series of returns
+names(DCCPre)
+
+Vol_series <- DCCPre$marVol
+colnames(Vol_series) <- colnames(xts_rtn)
+library(dplyr)
+Vol_series <-
+  data.frame( cbind( date = index(xts_rtn), Vol_series)) %>% # Add date column which dropped away...
+  mutate(date = as.Date(date)) %>%  tbl_df()  # make date column a date column...
+TidyVol <- Vol_series %>% gather(Tickers, Sigma, -date)
+g2 <-
+ggplot(TidyVol) + geom_line(aes(x = date, y = Sigma, colour = Tickers)) # However the plot will be inserted in the Appedix in the actual paper for cleanliness
+
+```
+
+The following code chunk uses the standaedised residuals to estimate the time-varying conditional correlations between USD and EM-DM equity returns:
+
+```{r DCC model estimation}
+#==============================================================================
+### Estimating DCC model
+#=============================================================================
+
+#WE firstly save the standardized residuals (Etas) from the Vol series above
+
+StdRes <- DCCPre$sresi
+
+#detach tidyr and dplyr packages to avoid ambiguity between stats::filter and dplyr::filter
+detach("package:tidyverse", unload=TRUE)
+detach("package:tbl2xts", unload=TRUE)
+
+#run the dccFit to calculate DCC using the starndadised residuals
+
+DCC <- dccFit(StdRes, type="Engle")
+
+#reload packages
+
+pacman::p_load("tidyverse", "tbl2xts", "broom")
+
+##calculating bivariate correlation between pairs
+
+#plot all the bivariate time-varying correlations with BBDXY
+Rhot <- DCC$rho.t
+
+#Loop to clean plot by create a renaming function(katzke 2020)
+ReturnSeries = xts_rtn
+DCC.TV.Cor = Rhot
+
+#To clean the plot 
+renamingdcc <- function(ReturnSeries, DCC.TV.Cor) {
+  
+  ncolrtn <- ncol(ReturnSeries)
+  namesrtn <- colnames(ReturnSeries)
+  paste(namesrtn, collapse = "_")
+  
+  nam <- c()
+  xx <- mapply(rep, times = ncolrtn:1, x = namesrtn)
+  # Now we create a nested for loop to save the names corresponding to the columns of interest.. 
+  
+   nam <- c()
+  for (j in 1:(ncolrtn)) {
+    for (i in 1:(ncolrtn)) {
+      nam[(i + (j-1)*(ncolrtn))] <- paste(xx[[j]][1], xx[[i]][1], sep="_")
+    }
+  }
+  
+  colnames(DCC.TV.Cor) <- nam
+  
+  # So to plot all the time-varying correlations wrt BBDXY
+      
+  # First append the date column that has (again) been removed...
+  
+  DCC.TV.Cor <- 
+    data.frame( cbind( date = index(ReturnSeries), DCC.TV.Cor)) %>% # Add date column which dropped away...
+    mutate(date = as.Date(date)) %>%  tbl_df() 
+  
+  DCC.TV.Cor <- DCC.TV.Cor %>% gather(Pairs, Rho, -date)
+  
+  DCC.TV.Cor
+  
+}
+
+#Now run the function
+Rhot <- 
+  renamingdcc(ReturnSeries = xts_rtn, DCC.TV.Cor = Rhot)
+
+head(Rhot %>% arrange(date))
+
+
+  ## create a plot for all the stocks relative to the other stocks
+  
+g1 <- 
+    ggplot(Rhot %>% filter(grepl("MXBR_", Pairs ), !grepl("_MXBR", Pairs)) ) + 
+    geom_line(aes(x = date, y = Rho, colour = Pairs)) + 
+    theme_hc() +
+    ggtitle("Dynamic Conditional Correlations: MXBR")
+  
+print(g1)
+## However the paper only captures code and subsequent plot for the BBDXY relative to all the stocks as set out in the objective
+g2 <- 
+    g1 %+% subset(Rhot %>% filter(grepl("BBDXY_", Pairs ), !grepl("_BBDXY", Pairs))) + ggtitle("Dynamic Conditional Correlations: BBDXY") #(However the plot will be inserted in the Appedix in the actual paper for cleanliness)
+ 
+print(g2)
+```
+
