@@ -189,7 +189,7 @@ flow of volatility from the United States Dollar (USD) to five Developed
 and five Emerging Markets equity returns across the Global Financial
 Crisis (GFC) period. Basing its analysis on the Morgan Stanley Capital
 International (MSCI) equity returns indexes, the paper utilizes
-multivariate GARCH Dynamic Conditional Correlation (DCC) processes to
+multivariate Dynamic Conditional Correlation (DCC) MV-GARCH processes to
 isolate the dynamic conditional correlations from the conditional
 variance component in order to highlight and rank these markets'
 sensitivity to the USD volatility. Generally, there is evidence of low
@@ -258,46 +258,48 @@ effect on stock market volatility. According to Katzke
 (\protect\hyperlink{ref-katzke2013}{2013}), strong correlation of asset
 markets that go even beyond fundamental linkages tend to be rife during
 global economic uncertainty as a result of these interconnected within
-global financial systems and instantaneous information flow . The
-working theory has been that the increased globalization of financial
-markets contributes to the increase in volatility of financial systems
-since these systems have been shown to be susceptible to surprise shocks
-from other markets including exchange rate fluctuations.
+global financial systems and instantaneous information flow. The working
+theory has been that the increased globalization of financial markets
+contributes to the increase in volatility of financial systems since
+these systems have been shown to be susceptible to surprise shocks from
+other markets including exchange rate fluctuations.
 
-Investors have over the years taken note of the fact that they trade off
-expected return and risk as a result of the inherent volatility in these
-markets. Understanding this risk-return trade-off is fundamental to
-investors as they endeavor to diversify their portfolios by investing in
-different asset classes which have low to negative correlations across
-equity markets. It is well documented that emerging equity markets are
-characterized by high volatility as opposed to developed markets. The
-study looks at the intensity at which the US dollar volatility
-contributes to the EM and DM stock market returns volatility. The paper
-can complement the emerging body of literature by establishing which
-among developed and emerging equity markets is mostly vulnerable to the
-US dollar volatility.
+Investors have over the years taken note of the fact that a trade-off
+exists between expected return and risk as a result of the inherent
+volatility in these markets. Understanding this risk-return trade-off is
+fundamental to investors as they endeavor to diversify their portfolios
+by investing in different asset classes which have low to negative
+correlations across equity markets. It is well documented that emerging
+equity markets are characterized by high volatility, as opposed to
+developed markets. This study looks at the intensity at which the US
+Dollar (USD) volatility in particular contributes to Emerging Markets
+(EM) and Developed Markets (DM) stock market returns' volatility. The
+findings can complement the emerging body of literature by establishing
+which among developed and emerging equity markets is mostly vulnerable
+to the USD volatility as the universal reserve currency.
 
-Moreover, by relating US dollar volatility effect in emerging markets,
-to its volatility effect in developed markets, the paper can assess
-whether the effects in different markets are driven by these common
-component or other macroeconomic or political factors. The results can
-enhance the systematic understanding of spillover activities between the
-US as a super power and the rest of the world. To capture the volatility
-spillover the study employs DCC GARCH modeling technic because of its
-capability to capture time-varying correlations in volatility. It finds
-that currency movements can have significant effects on investment
-returns volatility which has led to the use of currency hedges to remove
-direct effects of exchange rate volatility in some instances. Hence it
-concludes that evaluation of potential returns from either developed or
-emerging stock markets should take into account an analysis of currency
+Moreover, by relating USD volatility effect in EMs, to its volatility
+effect in DMs, the paper can assess whether the effects in these markets
+are driven by this common component or other macroeconomic or political
+factors. The results will enhance the systematic understanding of
+spillover activities between the US as a super power and the rest of the
+world. To capture this volatility spillover, the study employs Dynamic
+Conditional Correlation - Multivariate Generalized Autoregressive
+Conditional Heteroskedasticity (DCC MV-GARCH) modeling technic because
+of its capability to capture time-varying correlations in volatility. It
+finds that currency movements can have significant effects on investment
+returns volatility leading to the use of currency hedges to remove
+direct effects of exchange rate volatility. The paper concludes that
+evaluation of potential returns from either developed or emerging stock
+markets should take into account an analysis of the effects of currency
 trends on company earnings as this bare vital insight into global asset
 performance.
 
 The remainder of the paper is organized as follows. Section 2 highlights
 relevant literature to both exchange rate and equity market volatility
-among EM and DM countries. Section 3 breakdown the data composition for
-the data used in the study and the associated quality control measures
-employed to ensure accuracy and appropriateness of the intended
+among EM and DM countries. Section 3 breaks down the data composition of
+the dataset used in the study and the associated quality control
+measures employed to ensure accuracy and appropriateness of the intended
 analysis. Section 4 details the methodology adopted for analysis of the
 subject at hand while Section 5 presents the results of the estimated
 models. The last Section presents a summary and conclusion of the study.
@@ -313,16 +315,16 @@ however at loggerheads since riskier assets usually bare higher returns
 whereas less risky assets bare low returns. The direction of correlation
 between any two assets also has bearing on their riskiness. Negative
 correlation between risky assets reduces portfolio volatility since a
-negative return is accompanied by a positive return hence a reduction in
-the portfolio's volatility whereas a positive correlation between risky
-assets increases portfolio volatility (Ruppert \& Matteson,
-\protect\hyperlink{ref-ruppert2015}{2015}). Since investors demand a
-reward for bearing the risk they usually opt for volatile assets in
-expectation of the associated higher returns, thus investors are drawn
-towards the more volatile markets. Emerging markets have for the longest
-time been theorized to be the more volatile market and a common
-destination for international portfolio investors looking to obtain
-diversification rewards compared to developed markets (Hung,
+negative return can eventually be accompanied by a positive return hence
+a reduction in the portfolio's volatility whereas a positive correlation
+between risky assets increases portfolio volatility (Ruppert \&
+Matteson, \protect\hyperlink{ref-ruppert2015}{2015}). Since investors
+demand a reward for bearing the risk they usually opt for volatile
+assets in expectation of the associated higher returns, thus investors
+are drawn towards the more volatile markets. Emerging Markets have for
+the longest time been theorized to be the more volatile market and a
+common destination for international portfolio investors looking to
+obtain diversification rewards better than in DMs (Hung,
 \protect\hyperlink{ref-hung2019}{2019}). The latter has been proven by
 the surge of investors to EMs in recent years as increased number of
 high return shares were issued, reflected by the growing weight of EMs
@@ -332,75 +334,75 @@ among EM countries also tends to be higher than that found among DM
 countries whereas cross correlation among EMs is small.
 
 According to Bekaert \& Harvey
-(\protect\hyperlink{ref-bekaert1997}{1997}) this only forms part of the
+(\protect\hyperlink{ref-bekaert1997}{1997}), this only forms part of the
 distinguishing factors between developed and emerging markets. He
-explains that emerging countries also have high average returns, low
-market return correlations with developed markets and more predictable
-returns (Bekaert \& Harvey, \protect\hyperlink{ref-bekaert1997}{1997}).
-DeSantis \& Imrohoroglu (\protect\hyperlink{ref-desantis1994}{1994}) is
-also off the view that EM rather than DMs are characterized by high
-kurtosis as a result of returns that varied from either very high or
-very low. Shin (\protect\hyperlink{ref-shin2005}{2005}) also emphasize
-that the degree of integration between EMs and DMs plays an important
-role in determining spillover effects between them since a shock to the
-world market returns affects all countries with any form of covariance
-with it. The source of volatility maybe related to asset diversification
-or concentration, equity market development, macroeconomic or political
+explains that EMs also have high average returns, low market return
+correlations with developed markets and more predictable returns
+(Bekaert \& Harvey, \protect\hyperlink{ref-bekaert1997}{1997}). DeSantis
+\& Imrohoroglu (\protect\hyperlink{ref-desantis1994}{1994}) are also off
+the view that EMs rather than DMs are characterized by high kurtosis as
+a result of returns that varyfrom either very high or very low. Shin
+(\protect\hyperlink{ref-shin2005}{2005}) also emphasizes that the degree
+of integration between EMs and DMs plays an important role in
+determining spillover effects between them since a shock to the world
+market returns affects all countries with any form of covariance with
+it. The source of volatility may relate to asset diversification or
+concentration, equity market development, macroeconomic or political
 influences (Bekaert \& Harvey,
-\protect\hyperlink{ref-bekaert1997}{1997}).But for purposes of this
-paper, the focus is on exchange rate volatility, as a source of
-volatility with particular interest on US dollar volatility because of
-its position as the global reserve currency and dominance of the US
-financial market. An appreciation of the domestic currency against the
-dollar has an influence on international investors because their returns
-increase whereas a depreciation of the local currency against the dollar
-results in a reduction of their returns. According to Bahmani-Oskooee \&
-Sohrabian (\protect\hyperlink{ref-bahmani1992}{1992}), the inverse
-relationship between domestic (foreign) assets and foreign (domestic)
-interest rates and the positive relationship between domestic (foreign)
-assets and domestic (foreign) interest rates solidify the role of
-exchange rates in balancing asset demand and supply.
+\protect\hyperlink{ref-bekaert1997}{1997}). For purposes of this paper,
+the focus is on exchange rate volatility, as a source of volatility with
+particular interest on US dollar volatility because of its position as
+the global reserve currency and dominance of the US financial market. An
+appreciation of the domestic currency against the dollar has an
+influence on international investors because their returns increase
+whereas a depreciation of the local currency against the USD results in
+a reduction of their returns. According to Bahmani-Oskooee \& Sohrabian
+(\protect\hyperlink{ref-bahmani1992}{1992}), the inverse relationship
+between domestic (foreign) assets and foreign (domestic) interest rates
+and the positive relationship between domestic (foreign) assets and
+domestic (foreign) interest rates solidifies the role of exchange rates
+in balancing asset demand and supply.
 
-Lim \& Sek (\protect\hyperlink{ref-lim2014}{2014}) studies Volatility in
-EMS and concludes that exchange rate volatility does affect equity
+Lim \& Sek (\protect\hyperlink{ref-lim2014}{2014}) study Volatility in
+EMs and concludes that exchange rate volatility does affect equity
 market returns. Adjasi \emph{et al.}
-(\protect\hyperlink{ref-adjasi2008}{2008}) also shares the same view and
-finds an inverse relationship between exchange rate volatility and
+(\protect\hyperlink{ref-adjasi2008}{2008}) also share the same sentiment
+and find an inverse relationship between exchange rate volatility and
 equity market returns. They note that an increase in volatility of the
 local currency exchange value results in financial volatility and
 subsequent increase in investor uncertainty. Mcgibany \& Nourzad
 (\protect\hyperlink{ref-mcgibany1995}{1995}) reiterate that when faced
 with such an option, local investors are motivated to substitute assets
 they believe are safe for riskier. They however note that Investors tend
-to seek hedging against their own currency depreciation, or even seek to
-profit off other currencies' appreciation by holding assets linked to it
-in order to cushion against volatility risk. Kanas
+to hedge against their own currency depreciation, or even seek to profit
+off other currencies' appreciation by holding assets linked to it in
+order to cushion against volatility risk. Kanas
 (\protect\hyperlink{ref-kanas2000}{2000}) \& Morales
 (\protect\hyperlink{ref-morales2008}{2008}) study on volatility
 spillover from exchange rate markets to equity markets in USA, UK,
 Canada, Japan, Germany, France, Czech Republic, Hungary, Poland and
 Slovakia using bivariate Exponential-GARCH (EGARCH) model on daily data
-and find insignificant volatility spillover from exchange rate to equity
+finds insignificant volatility spillover from exchange rate to equity
 markets. This they explained could be a result of a number of reasons.
-Firstly the use of daily data which couldn't capture effects of trade
-flows on exchange rate changes, secondly, the counteractive effect of
-positive exchange rate volatility on equity markets for one firm can be
-offset by a negative effect for others resulting in weak exchange rate
-effect and lastly the reason could be the fact that volatility
-spillovers can be counteracted by the use of exchange rate risk hedges
-such as futures, forwards and currency option (Kanas,
-\protect\hyperlink{ref-kanas2000}{2000}). Raghavan \& Dark
-(\protect\hyperlink{ref-raghavan2008}{2008}) however find a significant
-unidirectional volatility spillover from the USD/AUD exchange rates to
-the Australian All Ordinaries Index (AOI) using daily data from 2
-January 1995 to 31 December 2004. However, Mishra \emph{et al.}
-(\protect\hyperlink{ref-mishra2007}{2007}) \& Kumar
+Firstly, the use of daily data in thier study couldn't capture effects
+of trade flows on exchange rate changes, secondly, the counteractive
+effect of positive exchange rate volatility on equity markets for one
+firm can be offset by a negative effect for others resulting in weak
+exchange rate effect, and lastly the reason could be the fact that
+volatility spillovers can be counteracted by the use of exchange rate
+risk hedges such as futures, forwards and currency option (Kanas,
+\protect\hyperlink{ref-kanas2000}{2000} \& @morales2008). Raghavan \&
+Dark (\protect\hyperlink{ref-raghavan2008}{2008}) however find a
+significant unidirectional volatility spillover from the USD/AUD
+exchange rates to the Australian All Ordinaries Index (AOI) using daily
+data from 2 January 1995 to 31 December 2004. However, Mishra \emph{et
+al.} (\protect\hyperlink{ref-mishra2007}{2007}) \& Kumar
 (\protect\hyperlink{ref-kumar2013}{2013}) use the bivariate EGARCH model
 in India, Brazil, and South Africa and find a significant bi-directional
 volatility spillover between stock and foreign exchange markets proving
 the existence of information transmission and integration between the
 two markets. Moreover,Chkili \& Nguyen
-(\protect\hyperlink{ref-chkili2014}{2014}) uses Markov-Switching EGARCH
+(\protect\hyperlink{ref-chkili2014}{2014}) use Markov-Switching EGARCH
 model on weekly data to find a significant impact of exchange rate
 changes on stock market volatility in Hong Kong, Singapore, Malaysia and
 Mexico. They also conclude that the relationship between exchange rate
@@ -418,18 +420,17 @@ since the introduction of ARCH models by Engle
 (\protect\hyperlink{ref-engle1982}{1982}) in his seminal paper (Katzke,
 \protect\hyperlink{ref-katzke2013}{2013}; Silvennoinen \& Teräsvirta,
 \protect\hyperlink{ref-silvennoinen2009}{2009}). Silvennoinen \&
-Teräsvirta (\protect\hyperlink{ref-silvennoinen2009}{2009}) shows that
+Teräsvirta (\protect\hyperlink{ref-silvennoinen2009}{2009}) show that
 the initial works of authors like Bollerslev \emph{et al.}
 (\protect\hyperlink{ref-bollerslev1994}{1994}) \& Shephard
 (\protect\hyperlink{ref-shephard1996}{1996}) focused on univariate
 models hence extending such works to the multivariate dimension is also
 vital. Ruppert \& Matteson (\protect\hyperlink{ref-ruppert2015}{2015})
-shows that Generalized Autoregressive Conditional Heteroskedasticity
-(GARCH) on the other hand have gained popularity in econometrics because
-of their ability to randomly varying volatility in time series data.
-These models are best known to model both the conditional
-heteroskedasticity and the heavy-tailed distributions of equity markets
-data.
+show that GARCH models on the other hand have gained popularity in
+econometrics because of their ability to randomly vary volatility in
+time series data. These models are best known to model both the
+conditional heteroskedasticity and the heavy-tailed distributions of
+equity markets data.
 
 \hypertarget{data}{%
 \section{\texorpdfstring{Data \label{Data}}{Data }}\label{data}}
@@ -437,67 +438,65 @@ data.
 The study uses value-weighted equity market indices for ten major equity
 markets around the world. These are Egypt, Taiwan, India, Brazil, South
 Africa, Japan, United Kingdom, France, Canada and Switzerland. The data
-is acquired from Morgan Stanley Capital International (MSCI) for the
-period starting in 2003 to 2018 (15-year period to capture the impact of
-the Global Financial Crisis (GFC)). This sample period enables the
-research to examine the effect of US dollar volatility on EM-DM equity
-markets during both bad and good times. The GFC is an appropriate
-example of bad times since both Developed countries and Emerging
-countries' equity markets experienced a downturn.
+is acquired from the Morgan Stanley Capital International (MSCI) and
+Bloomberg databases for the period starting in 2003 to 2018 (15-year
+period to capture the impact of the Global Financial Crisis (GFC)). This
+sample period enables the research to examine the effect of US dollar
+volatility on EM-DM equity markets during both bad and good times. The
+GFC is an appropriate example of bad times since both Developed
+countries and Emerging countries' equity markets experienced a downturn.
 
 Under the MSCI taxonomy, Egypt, Taiwan, India, Brazil, South Africa, are
-categorised as `emerging markets while the other countries are
-categorised as developed' markets. Bloomberg on the other hand employes
-an Index that tracks the performance of a basket of 10 leading global
-currencies against the United states dollar. This is expressed as the
-Bloomberg Dollar Spot Index(BBDXY). All these indices are widely used in
-equity market research on volatility transmission because of the degree
-of comparability they allow. Weekly data is analysed as opposed to
-monthly data in order to provide sufficient observation required by the
-Garch model in the absence of short term correlations due to the noise
-that is usually found in daily data. Higher frequency data like daily
-data tends to be more volatile and has more noise that might not
-correspond to long run fundamental behaviour. Monthly data on the other
-hand does not give sufficient information for estimation since monthly
-returns are longer horizon returns which can musk momentary responses to
-innovations which may only last for days. The stock value indexes are
-expressed in US dollars to avoid exchange rates fluctuations. For
-further analysis, the continuously compounded daily returns are
-calculated by taking the log difference of each listed company as
-follows;
+categorised as ``EMs'' while the otherabovementioned countries are
+categorised as ``DMs''. Bloomberg on the other hand provided the
+Bloomberg Dollar Spot Index(BBDXY) which is an Index that tracks the
+performance of a basket of 10 leading global currencies against the
+United states dollar. All these indices are widely used in equity market
+research on volatility transmission because of the degree of
+comparability they allow. Weekly data is analysed as opposed to monthly
+data in order to provide sufficient observation required by the GARCH
+model in the absence of short term correlations due to the noise that is
+usually found in daily data. Higher frequency data like daily data tends
+to be more volatile and has more noise that might not correspond to long
+run fundamental behaviour. Monthly data on the other hand does not give
+sufficient information for estimation since monthly returns are longer
+horizon returns which can musk momentary responses to innovations which
+may only last for days. The stock value indexes are expressed in US
+dollars to avoid exchange rates differences. For further analysis, the
+continuously compounded daily returns are calculated by taking the log
+difference of each listed company as follows;
 
 \[
 r_{i,t} = ln (\frac{P_{i,t}}{P_{i,t-1}})*100  
-\]
-
-Where \(r_{i,t}\) represents the natural logarithm of weekly stock
+\] Where \(r_{i,t}\) represents the natural logarithm of weekly stock
 returns from selected DM and EM country indices with \(P_{i,t}\) as the
 closing price of the market index, i, at time t.
 
 Table \ref{tab1} outlines all the EM and DM countries and their
-respective Tickers as used by the MSCI database. Table \ref{tab2} on the
-other hand presents the summary Statistics for all the tickers used for
-analysis. The normality test using the Jarque--Bera test the weekly
-returns is rejected as expected. In addition, both the skewness and
-excess kurtosis statistics also indicate that the distributions of all
-the Indices are non-normal. That is the kurtosis is greater than zero
-which represents a normal distribution. The excess kurtosis shows that
-the distribution has heavy tails and as such is a leptokurtic
-distribution common in financial time series data.The reurns as seen in
-table \ref{tab2} are substancially negatively skewed. The BBDXY indice
-displays the highest mean whereas the MXJP displays the lowest mean. The
-graphical representation of all the indices can be viewed on figure
-\ref{figure1} in the Appendix . All the equty markets were substantially
-affect by the 2008 Global Financial Crisis as seen be the decline in
-returns during the period. The recurrence of very high and very low
-returns observed particularly in the sampled emerging countries
-indicates the presence of leptokurtosis. The overall graphicall
-presentation in figure \ref{figure1} indicate that periods of volatility
-clustering highlighling the presence of serial heteroskedasticity.
+respective Tickers as used by the MSCI and Bloomberg databases. Table
+\ref{tab2} on the other hand presents the Summary Statistics for all the
+Tickers used for analysis. The normality test using the Jarque--Bera
+test the for weekly returns is rejected as expected. In addition, both
+the skewness and excess kurtosis statistics also indicate that the
+distributions of all the Indices are non-normal. That is, the kurtosis
+is greater than zero which represents a normal distribution. The excess
+kurtosis shows that the distribution has heavy tails and as such is a
+leptokurtic distribution common in financial time series data. The
+returns as seen in table \ref{tab2} are substantially negatively skewed.
+The BBDXY indice displays the highest mean whereas the MXJP displays the
+lowest mean. The graphical representation of all the indices can be
+viewed on figure \ref{figure1} in the Appendix. All the equity markets
+were substantially affected by the 2008 Global Financial Crisis as seen
+by the decline in returns during the period. The recurrence of very high
+and very low returns observed particularly in the sampled emerging
+countries indicates the presence of leptokurtosis. The overall
+graphicall presentation in figure \ref{figure1} indicate periods of
+volatility clustering highlighting the presence of serial
+heteroskedasticity.
 
 In order to control for any remaining serial heteroskedasticity in the
 series and explore the conditional covariance structure for further
-analysis the next section shows the generalization of the univariate
+analysis, the next section shows the generalization of the Univariate
 Garch(1,1) Model to the multivariate domain in order to conduct
 multivariate volatility modeling. \hfill
 
@@ -532,19 +531,19 @@ both EM and DM equity markets, direct time-varying conditional
 correlations between the different markets are modeled using Dynamic
 Conditional Correlation (DCC) MV-GARCH models as suggested by Engle
 (\protect\hyperlink{ref-engle2002}{2002}). These models are preferred
-due to their ability to accommodate volatility clustering. Engle
+due to their ability to accommodate volatility clustering. Tsay
+(\protect\hyperlink{ref-tsay2013}{2013}), Engle
 (\protect\hyperlink{ref-engle2002}{2002}) \& Katzke
 (\protect\hyperlink{ref-katzke2020}{2020}) emphasize that these models
 are preferable due to their applicability in various situations where
-their flexibility enables specifying univariate GARCH Models and leads
-to gains in parsimony as they can be estimated either with univariate or
+their flexibility enables specifying Univariate GARCH Models and lead to
+gains in parsimony as they can be estimated either with univariate or
 two step methods based on the likelihood function to keep track of the
 time evolution of conditional correlations regardless of the number of
-assets(Tsay, \protect\hyperlink{ref-tsay2013}{2013}). The first step is
-to obtain the GARCH estimates for the univariate volatility estimates
-for each returns series. The empirical analysis is undertaken
-considering a stochastic process \(r_{it}\) of a continuously compounded
-weekly returns as shown below;
+assets. The first step is to obtain the GARCH estimates for the
+univariate volatility estimates for each returns series. The empirical
+analysis is undertaken considering a stochastic process \(r_{it}\) of a
+continuously compounded weekly returns as shown below;
 
 \begin{align}
 r_{it} = \mu_{i,t} + \varepsilon_{i,t}  \label{eq1} \\ \notag 
@@ -561,18 +560,18 @@ expressed as;
 \eta_{it}= \epsilon_{it}/ \sqrt h_{it} \quad with \quad \epsilon_{it} \sim N(0,H_t)\quad and\quad \eta_{it} \sim N(0,I)   \label{eq2} \\ \notag 
 \end{align}
 
-On a multivariate scale, according to (Engle,
-\protect\hyperlink{ref-engle2002}{2002}) we generalise Bollerslev (1990)
-Constant Conditional Correlation (CCC) estimator and use the
+On a multivariate scale, according to Engle
+(\protect\hyperlink{ref-engle2002}{2002}) we generalise Bollerslev's
+(1990) Constant Conditional Correlation (CCC) estimator and use the
 standardised residuals from \ref{eq2} above to construct time varying
-conditional correlations whereby firstly the dynamic correlation model
-\(H_t\) is assumed to be;
+conditional correlations whereby the dynamic correlation model \(H_t\)
+is assumed to be;
 
 \begin{align} 
 H_t = D_t.R_t.D_t. \label{eq3} \\ \notag
 \end{align}
 
-Equation \ref{eq3} splits the variance Covariance matrix into identical
+Equation \ref{eq3} splits the Variance-Covariance matrix into identical
 diagonal matrices \(D_t\) and refers to time varying conditional
 correlations matrix \(R_t\). The diagonal matrices are defined as;
 
@@ -604,7 +603,7 @@ from either positive and negative shocks. He however argues that
 negative shock to financial time series could cause a rise in volatility
 that is greater than a positive shock of the same magnitude.
 
-Employing Equation \ref{eq5} the dynamic time-varying conditional
+Employing Equation \ref{eq5}, the dynamic time-varying conditional
 correlation matrix \(R_t\) is estimated as;
 
 \begin{align}   \label{eq6}
@@ -621,7 +620,7 @@ R_t &= \rho_{ij,t} = \frac{q_{i,j,t}}{\sqrt{q_{ii,t}.q_{jj,t}}}
 This results in a DCC model formulated as in \ref{eq8}, which has the
 assumption of normality that produces a likehood estimator as opposed to
 a Quasi-maximum Likelood estimator and also includes the assumption that
-each asset in the series follows a univariate GARCH process(Engle,
+each asset in the series follows a univariate GARCH process (Engle,
 \protect\hyperlink{ref-engle2002}{2002}).
 
 \begin{align} \label{eq8}
@@ -635,21 +634,21 @@ R_t &= Diag(Q_t^{-1}).Q_t.Diag({Q_t}^{-1}) \notag \\
 \hypertarget{results}{%
 \section{Results}\label{results}}
 
-This section presents the main empirical findings on measuring the
-volatility spillover between US Dollar and EM and DM equity markets. It
-uses the DCC-GARCH model results to highlight time-varying conditional
+This section presents the main empirical findings on measuring
+volatility spillover between the USD, EM and DM equity markets. It uses
+the DCC-GARCH model results to highlight time-varying conditional
 correlations between the dollar and these markets. This approach is
-two-fold. Firstly the standard Univariate Garch (1,1) is modeled to give
-the estimated volatility series (\(\sigma\) or \(h_t\) series\{ used
-interchangeably in the analysis\}) whose its standardized residuals are
-then utilized to estimate the Dynamic conditional correlations. The
+two-fold. Firstly, the standard Univariate Garch (1,1) was modeled to
+give the estimated volatility series (\(\sigma\) or \(h_t\) series\{
+used interchangeably in the analysis\}), whose standardized residuals
+are then utilized to estimate the Dynamic Conditional Correlations. The
 series was first tested for conditional heteroskedasticity using the
 Multivariate Generalization of the Lagrange Multiplier (LM) test (MARCH
 test) of Engle (\protect\hyperlink{ref-engle1982}{1982}). The MARCH test
 as detailed below shows that all the MV portmanteau tests rejected the
 null hypothesis of no conditional heteroskedasticity as all the four
 test statistics utilized have p-values of zero , affirming the choice to
-use the chosen MVGARCH model. As expected the test confirmed the
+use the chosen MV-GARCH model. As expected the test confirmed the
 presence of conditional heteroskedasticity in the weekly log return
 series which is not surprising since financial time series data is known
 to have conditional heteroskedasticity. This shows that the conditional
@@ -667,12 +666,12 @@ covariance of the sampled multivariate series is time dependent.
 
 The resultant volatility estimates for each series are shown in figure
 \ref{figure2}. The figure highlights high correlation between the
-returns volatility of EM and DM equity markets which is highlighted
-further during the GFC period as the volatility of all returns spiked.
+returns volatility of EM and DM equity markets which is even more
+apparent during the GFC period as the volatility of all returns spiked.
 This can be seen as a possible indication of a global systematic risk
-factor. It is evident from the figure that EMs have the most volatile
-returns compare to the DMs throughout the sample period. Among this,
-MXEG is the most volatile, followed by MXBR indicating a significant and
+factor. It is evident from \ref{figure2} that EMs have the most volatile
+returns compare to DMs throughout the sample period. Among this, MXEG is
+the most volatile, followed by MXBR indicating a significant and
 distinct volatility effect within EMs that keeps growing overtime. The
 BBDXY is the least volatile but among the return series the MXCA and
 MXGB are among the least volatile. Overall the Univariate Garch (1,1)
@@ -681,8 +680,8 @@ relationship among EMs and DMs. The volatility in all returns appears to
 have increased in the latter part of the sample period with more
 dramatic swings beyond 2015. Generally, we find strong evidence of
 time-varying volatility. Particularly, there is volatility clustering in
-the sampled emerging markets as evidenced in most developed financial
-markets amking the MVGARCH processes the most appropriated models to be
+the sampled EMs similar to that evidenced in most developed financial
+markets making the MV-GARCH processes the most appropriated to be
 applied.
 
 As mentioned above, the second step is then to use the standardized
@@ -690,22 +689,22 @@ residuals obtained from the estimated Univariate Garch Model to estimate
 the time-varying DCC which provides a cleaner noise reduced version of
 the dynamic co-movements between the US dollar and EM-DM returns. Figure
 \ref{figure3} shows how the bivariate dynamic/time varying conditional
-correlation between the USD and equity returns changes overtime..
-Looking at the USD and MSCI index pairs in the figure we can see that
-the USD average correlation with the equity market returns is relatively
-low. Moreover, these volatility effects driven by the USD volatility can
-be ranked to reflect the least and most sensitive markets to the USD
-volatility. It is apparent from the figure that France followed by the
-United Kingdom and Japan represent the most sensitive DM equity returns
-to US dollar volatility. The volatility effect represents a
-unidirectional spillover of the US dollar volatility to these markets
-whose effect differs according to the individual market development and
-degree of market integration. One explanation for the large effect in
-these markets is the high use of the USD in commercial and financial
+correlation between the USD and equity returns change overtime. Looking
+at the USD and MSCI index pairs in the figure we can see that the USD
+average correlation with the equity market returns is relatively low.
+Moreover, these volatility effects driven by the USD volatility can be
+ranked to reflect the least and most sensitive markets to the USD
+volatility. It is apparent from \ref{figure3} that France followed by
+the United Kingdom and Japan represent the most sensitive DM equity
+returns to USD volatility. The volatility effect represents a
+unidirectional spillover of the USD volatility to these markets whose
+effect differs according to the individual market development and degree
+of market integration. One explanation for the large effect in these
+markets is the high use of the USD in commercial and financial
 transactions thus increasing their foreign exchange risk premium. Most
-of the emerging markets as portrayed in figure \ref{figure3} seem to be
-less sensitive to the USD volatility where by India, Egypt and South
-Africa are ranked lowest. This can be a result of the individual
+of the EMs as portrayed in figure \ref{figure3} seem to be less
+sensitive to the USD volatility whereby India, Egypt and South Africa
+are ranked lowest. This can be a result of the individual
 characteristics of the EM countries. Interestingly there is still a
 sharp decline in the correlations during the GFC indicating a
 significant volatility spillover to all equity markets during the
@@ -724,43 +723,42 @@ uncertainty during such periods amplifies the co-movement between equity
 markets thus dampening investors' ability and desire to diversify their
 portfolios. By relating the volatility effect in these markets we are
 able to assess and differentiate whether the co-movement effects are a
-result of a common factor or various macroeconomic factors beyond the
-GFC having proven to be a common shock across the board. We can conclude
-that there is significant evidence of low time varying correlations
-between the USD and Equity returns. This implies that exchange rate and
-equity markets are informationally inefficient such that one market has
-some predictive power over the other. These results have substantial
-implications for international portfolio managers, hedgers, individual
-and institutional investors in the assessment of investment and asset
-diversification decisions across markets. As a result Investors can
-better comprehend how volatility between exchange rate and equity
-markets interlink overtime in order to forecast market behavior.
-Generally, the findings indicate a unidirectional spillover in dollar
-volatility from the US to other markets whose impact differs according
-to market development.
+result of a common factor or various macroeconomic factors regardless of
+the GFC having proven to be a common shock across the board. We can
+conclude that there is significant evidence of low time varying
+correlations between the USD and Equity returns. This implies that
+exchange rate and equity markets are informationally inefficient such
+that one market has some predictive power over the other. These results
+have substantial implications for international portfolio managers,
+hedgers, individual and institutional investors in the assessment of
+investment and asset diversification decisions across markets. As a
+result Investors can better comprehend how volatility between exchange
+rate and equity markets interlink overtime in order to forecast market
+behavior. Generally, the findings indicate a unidirectional spillover in
+dollar volatility from the US to other markets whose impact differs
+according to market development.
 
 More importantly, the results show that investors may need to diversify
 their investment portfolios and hedge against currency risk to maximize
-returns and avoid the volatility risk that exchange rate markets impose
-on equity markets. Specifically, international investors who do a large
-portion of their business in U.S dollar traded assets would need to
-hedge the USD-local currency exchange rate so that they lock in the
-current exchange rate rather than be subjected to future volatility.
-This will likely have a positive effect on the domestic asset returns
-through decreased volatility and increased predictability. Some emerging
-markets in particular still lack the requisite market development
-equipped with hedging instruments that can mitigate potential exchange
-rate risk exposure resulting in positive correlation between the
-exchange rate volatility and equity markets volatility. However,
-Emerging markets offer international investors with diversification
-opportunities as evidenced by low correlations with USD volatility as
-compared to developed markets. Investors with a long time horizon and
+returns and avoid the volatility risk that exchange rate markets pose to
+equity markets. Specifically, international investors who have a large
+portion of USD traded assets would need to hedge the USD-local currency
+exchange rate so that they lock in the current exchange rate rather than
+be subjected to future volatility. This will likely have a positive
+effect on the domestic asset returns through decreased volatility and
+increased predictability. Some emerging markets in particular still lack
+the requisite market development equipped with hedging instruments that
+can mitigate potential exchange rate risk exposure resulting in positive
+correlation between the exchange rate volatility and equity markets
+volatility. However, EMs offer international investors with
+diversification opportunities as evidenced by low correlations with USD
+volatility as compared to DMs. Investors with a long time horizon and
 high tolerance for the volatility in emerging markets can expect returns
-well in excess of developed market equities returns in the long run. In
-particular, the findings show South Africa to have the lowest bivariate
-conditional correlation with the USD amongst all the markets which can
-present it as an investment haven for international portfolio managers
-looking for assets with least co-movement characteristics.
+well in excess of DMs' equities returns in the long run. In particular,
+the findings show South Africa to have the lowest bivariate conditional
+correlation with the USD amongst all the markets which presents it as an
+investment haven for international portfolio managers looking for assets
+with least co-movement characteristics.
 
 As an avenue for future research, different measures of volatility such
 as the VIX (measure of market variance/ fear index) can be explored to
